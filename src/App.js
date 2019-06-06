@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
 import Navbar from './Components/layout/Navbar';
 import Users from './Components/Users/Users'
+import axios from 'axios'
 import './App.css';
 
-// With Class based Components, you MUST remember to use the keyword extends
 class App extends Component {
+  state = {
+    users: [],
+    loading: false
+  }
 
-  // render() is a LifeCycle Method. There are other lifecycle methods, but render() is the only one that is REQUIRED!!!!!
+  async componentDidMount() {
+    this.setState({ loading: true })
+
+    const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
+
+    this.setState({ users: res.data, loading: false })
+    console.log(this.state.users)
+  }
+
   render() {
-    // JSX MUST HAVE one parent div element
     return (
-      // Use React.Fragment, is you don't want the div element to show up in the DOM
-      // <Fragment>
       <div className="App">
         <Navbar icon="fab fa-github" title="Github Finder" />
-        <div className="container">
-          <Users />
+      <div className="container">
+          <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </div>
-      // </Fragment>
     );
   }
 }
