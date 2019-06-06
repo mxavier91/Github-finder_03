@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './Components/layout/Navbar';
-import Useritem from './Components/Users/Useritem'
+import Users from './Components/Users/Users'
 import './App.css';
 
 // With Class based Components, you MUST remember to use the keyword extends
@@ -14,7 +14,9 @@ class App extends Component {
       // <Fragment>
       <div className="App">
         <Navbar icon="fab fa-github" title="Github Finder" />
-        <Useritem />
+        <div className="container">
+          <Users />
+        </div>
       </div>
       // </Fragment>
     );
