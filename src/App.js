@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from './Components/layout/Navbar';
 import Users from './Components/Users/Users'
+import Search from './Components/Users/Search'
 import axios from 'axios'
 import './App.css';
 
@@ -22,10 +23,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar icon="fab fa-github" title="Github Finder" />
+          <Navbar icon="fab fa-github" title="Github Finder" />
       <div className="container">
-          <Users loading={this.state.loading} users={this.state.users} />
-        </div>
+        <Search />
+        <Users loading={this.state.loading} users={this.state.users} />
+       </div>
       </div>
     );
   }
